@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 
-const SECOND = 1;
-const MINUTE = 60 * SECOND;
-const HOUR = 60 * MINUTE;
-
 function App() {
   const [count, setCount] = useState(0);
   const [timer, setTimer] = useState(false);
   const [reset, setReset] = useState(false);
+  const [result, setResult] = useState('0:00');
 
   let timeoutId: number = 0;
 
@@ -19,7 +16,7 @@ function App() {
     }
     if (timer && !reset) {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setCount(count + SECOND), 1000);
+      timeoutId = setTimeout(() => setCount(count + 1), 1000);
     }
   }, [timer, count, reset]);
 
@@ -28,10 +25,22 @@ function App() {
     setTimer(false);
   };
 
+  useEffect(() => {
+    const minutes = Math.floor(count / 60);
+    const seconds = count % 60;
+
+    function padTo2Digits(num: number) {
+      return num.toString().padStart(2, '0');
+    }
+
+    setResult(`${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`);
+    console.log(result);
+  }, [count]);
+
   return (
     <>
       <h1>Timer</h1>
-      <p>{count}</p>
+      <p>{result}</p>
       <button
         onClick={() => {
           setTimer(!timer);

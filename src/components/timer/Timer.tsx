@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import './timer.css';
+import { clearTimeout, setTimeout } from 'worker-timers';
 
 enum Focus {
   WORK,
@@ -84,9 +85,6 @@ function Timer() {
     }
   }, [totalSeconds]);
 
-  // Reseting setTimeout, without clearing doesnt work
-  let timeoutId: number = 0;
-
   // Recounting long chill in case chill time changed
   useEffect(() => {
     setLongChill(chillTime * 3);
@@ -99,8 +97,7 @@ function Timer() {
       return;
     }
     if (isTimerUp && !isReset) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setTotalSeconds(totalSeconds + 1), 1000);
+      setTimeout(() => setTotalSeconds(totalSeconds + 1), 1);
     }
   }, [totalSeconds, isReset, isTimerUp]);
 

@@ -100,7 +100,7 @@ function Timer() {
     }
     if (isTimerUp && !isReset) {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setTotalSeconds(totalSeconds + 1), 10);
+      timeoutId = setTimeout(() => setTotalSeconds(totalSeconds + 1), 1000);
     }
   }, [totalSeconds, isReset, isTimerUp]);
 

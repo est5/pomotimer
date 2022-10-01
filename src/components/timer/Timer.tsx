@@ -97,7 +97,7 @@ function Timer() {
       return;
     }
     if (isTimerUp && !isReset) {
-      setTimeout(() => setTotalSeconds(totalSeconds + 1), 1);
+      setTimeout(() => setTotalSeconds(totalSeconds + 1), 1000);
     }
   }, [totalSeconds, isReset, isTimerUp]);
 

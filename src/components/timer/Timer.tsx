@@ -122,7 +122,9 @@ function Timer() {
     }
 
     let title = document.getElementsByTagName('title')[0];
-    title.textContent = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+    title.textContent = `${getFocus()} ${padTo2Digits(minutes)}:${padTo2Digits(
+      seconds
+    )}`;
     isReset
       ? setStrTimer('00:00')
       : setStrTimer(`${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`);

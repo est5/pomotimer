@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import './timer.css';
-import { clearTimeout, setTimeout } from 'worker-timers';
+import { setTimeout } from 'worker-timers';
 
 enum Focus {
   WORK,

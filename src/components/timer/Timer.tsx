@@ -156,6 +156,14 @@ function Timer() {
   const changeChillTimer = (e: React.FormEvent<HTMLInputElement>) =>
     setChillTime(validateInput(Number.parseInt(e.currentTarget.value)));
 
+  let audio = new Audio('alert.wav');
+
+  //On focus change play audio
+  useEffect(() => {
+    audio.volume = 0.5;
+    audio.play();
+  }, [focusType]);
+
   return (
     <>
       <h1>Its {getFocus()} time !</h1>

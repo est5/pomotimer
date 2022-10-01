@@ -4,6 +4,7 @@ import './App.css';
 enum Focus {
   WORK,
   CHILL,
+  LONG_CHILL,
 }
 
 function App() {
@@ -15,45 +16,19 @@ function App() {
   const [minutes, setMinutes] = useState(0);
   const [workTime, setWorkTime] = useState(40);
   const [chillTime, setChillTime] = useState(10);
-
-  let timeoutId: number = 0;
+  const [longChill, setLongChill] = useState(chillTime * 3);
+  const [cicleCounter, setCicleCouter] = useState(0);
 
   useEffect(() => {
-    if (reset) {
-      setCount(0);
+    if (count == 0) {
       return;
     }
-    if (timer && !reset) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setCount(count + 1), 1000);
-    }
-  }, [timer, count, reset]);
-
-  const resetTimer = () => {
-    setResult('00:00');
-    setReset(true);
-    setTimer(false);
-  };
-
-  useEffect(() => {
-    setMinutes(Math.floor(count / 60));
-    const seconds = count % 60;
-
-    function padTo2Digits(num: number) {
-      return num.toString().padStart(2, '0');
-    }
-
-    reset
-      ? setResult('00:00')
-      : setResult(`${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`);
-  }, [count]);
-
-  useEffect(() => {
     switch (focusType) {
-      case 0:
+      case 2:
         {
-          if (minutes == workTime) {
-            setFocusType(1);
+          if (minutes == longChill) {
+            setFocusType(0);
+            setCicleCouter(0);
             resetTimer();
           }
         }
@@ -67,7 +42,59 @@ function App() {
           }
         }
         break;
+
+      case 0:
+        {
+          if (minutes == workTime) {
+            if (cicleCounter == 4) {
+              setFocusType(2);
+              resetTimer();
+              break;
+            }
+            setCicleCouter(cicleCounter + 1);
+            setFocusType(1);
+            resetTimer();
+          }
+        }
+        break;
     }
+  }, [count]);
+
+  let timeoutId: number = 0;
+
+  useEffect(() => {
+    setLongChill(chillTime * 3);
+  }, [chillTime]);
+
+  useEffect(() => {
+    if (reset) {
+      setCount(0);
+      return;
+    }
+    if (timer && !reset) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setCount(count + 1), 10);
+    }
+  }, [count, reset, timer]);
+
+  const resetTimer = () => {
+    setResult('00:00');
+    setReset(true);
+    setTimer(false);
+  };
+
+  useEffect(() => {
+    setMinutes(Math.floor(count / 60));
+
+    const seconds = count % 60;
+
+    function padTo2Digits(num: number) {
+      return num.toString().padStart(2, '0');
+    }
+
+    reset
+      ? setResult('00:00')
+      : setResult(`${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`);
   }, [count]);
 
   const validateInput = (n: number) => {
@@ -79,9 +106,23 @@ function App() {
     return n;
   };
 
+  const getFocus = () => {
+    switch (focusType) {
+      case 0:
+        return 'Work';
+      case 1:
+        return 'Chill';
+      case 2:
+        return 'Long Chill';
+    }
+  };
+
+  useEffect(() => {}, [focusType]);
+
   return (
     <>
-      <h1>{focusType == 0 ? 'Work' : 'Chill'}</h1>
+      <h1>{getFocus()}</h1>
+      <p>{cicleCounter}</p>
       <p>{result}</p>
       <button
         onClick={() => {
@@ -95,6 +136,9 @@ function App() {
       <button
         onClick={() => {
           resetTimer();
+          if (focusType == 2) {
+            setCicleCouter(0);
+          }
           setFocusType(focusType == 0 ? 1 : 0);
         }}
       >

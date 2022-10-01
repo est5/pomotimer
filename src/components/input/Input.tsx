@@ -11,7 +11,7 @@ type InputProps = {
 
 function Input({ value, onChange, name, id, type, txt }: InputProps) {
   return (
-    <>
+    <div className="input-container">
       <label htmlFor={id}>{txt}</label>
       <input
         type={type}
@@ -22,7 +22,8 @@ function Input({ value, onChange, name, id, type, txt }: InputProps) {
         value={value}
         onChange={onChange}
       />
-    </>
+      <span>minutes</span>
+    </div>
   );
 }
 

@@ -165,30 +165,36 @@ function Timer() {
   }, [focusType]);
 
   return (
-    <>
+    <div className="timer-container">
       <h1>Its {getFocus()} time !</h1>
-      <p>Work cycles in this round done: {cycleCounter}</p>
-      <p>Rounds done: {round}</p>
+      <p>
+        Work cycles in this round done: <strong>{cycleCounter}</strong>
+      </p>
+      <p>
+        Rounds done: <strong>{round}</strong>
+      </p>
       <p>{strTimer}</p>
 
-      <Button
-        onClick={() => {
-          setIsTimerUp(!isTimerUp);
-          setIsReset(false);
-        }}
-        txt={!isTimerUp ? 'Start' : 'Stop'}
-      />
-      <Button onClick={resetTimer} txt={'Reset'} />
-      <Button
-        onClick={() => {
-          resetTimer();
-          if (focusType == 2) {
-            setCycleCounter(0);
-          }
-          setFocusType(focusType == 0 ? 1 : 0);
-        }}
-        txt={`Skip to ${focusType == 0 ? 'Chill' : 'Work'}`}
-      />
+      <div className="buttons">
+        <Button
+          onClick={() => {
+            setIsTimerUp(!isTimerUp);
+            setIsReset(false);
+          }}
+          txt={!isTimerUp ? 'Start' : 'Stop'}
+        />
+        <Button onClick={resetTimer} txt={'Reset'} />
+        <Button
+          onClick={() => {
+            resetTimer();
+            if (focusType == 2) {
+              setCycleCounter(0);
+            }
+            setFocusType(focusType == 0 ? 1 : 0);
+          }}
+          txt={`Skip to ${focusType == 0 ? 'Chill' : 'Work'}`}
+        />
+      </div>
 
       <div>
         <Input
@@ -196,7 +202,7 @@ function Timer() {
           name="work"
           type="number"
           onChange={changeWorkTimer}
-          txt={'Work timer(min)'}
+          txt={'Work timer'}
           value={workTime}
         />
       </div>
@@ -206,11 +212,11 @@ function Timer() {
           name="chill"
           type="number"
           onChange={changeChillTimer}
-          txt={'Chill timer(min)'}
+          txt={'Chill timer'}
           value={chillTime}
         />
       </div>
-    </>
+    </div>
   );
 }
 

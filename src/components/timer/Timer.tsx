@@ -121,6 +121,8 @@ function Timer() {
       return num.toString().padStart(2, '0');
     }
 
+    let title = document.getElementsByTagName('title')[0];
+    title.textContent = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
     isReset
       ? setStrTimer('00:00')
       : setStrTimer(`${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`);

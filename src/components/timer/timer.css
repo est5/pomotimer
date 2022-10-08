@@ -1,22 +1,28 @@
 .timer-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 24px;
+  font-size: 1.3rem;
 
-  background-color: #d90429;
-  padding: 24px;
+  background-color: #ef233c;
+  padding: 48px;
   border-radius: 8px;
-  box-shadow: 8px 8px 2px #ef233c;
+  box-shadow: 8px 8px 2px #d90429;
 }
 
 .buttons {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  /* flex-direction: column; */
+  gap: 16px;
 
   align-items: center;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+}
+
+.timer {
+  font-size: 4rem;
 }

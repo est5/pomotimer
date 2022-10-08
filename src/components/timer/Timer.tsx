@@ -143,9 +143,9 @@ function Timer() {
       case 0:
         return 'Work';
       case 1:
-        return 'Chill';
+        return 'Break';
       case 2:
-        return 'Long Chill';
+        return 'Long Break';
     }
   };
 
@@ -176,7 +176,7 @@ function Timer() {
       <p>
         Rounds done: <strong>{round}</strong>
       </p>
-      <p>{strTimer}</p>
+      <p className="timer">{strTimer}</p>
 
       <div className="buttons">
         <Button
@@ -195,7 +195,7 @@ function Timer() {
             }
             setFocusType(focusType == 0 ? 1 : 0);
           }}
-          txt={`Skip to ${focusType == 0 ? 'Chill' : 'Work'}`}
+          txt={`Skip to ${focusType == 0 ? 'Break' : 'Work'}`}
         />
       </div>
 

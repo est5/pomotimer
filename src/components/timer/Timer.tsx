@@ -6,8 +6,8 @@ import { setTimeout } from 'worker-timers';
 
 enum Focus {
   WORK,
-  CHILL,
-  LONG_CHILL,
+  BREAK,
+  LONG_BREAK,
 }
 
 function Timer() {
@@ -32,10 +32,10 @@ function Timer() {
   const [workTime, setWorkTime] = useState(40);
 
   //Chill focus time
-  const [chillTime, setChillTime] = useState(10);
+  const [breakTime, setBreakTime] = useState(10);
 
   //After 4 cycles of work, probably not needed to be state
-  const [longChill, setLongChill] = useState(chillTime * 3);
+  const [longBreak, setLongBreak] = useState(breakTime * 3);
 
   const [cycleCounter, setCycleCounter] = useState(0);
 
@@ -50,7 +50,7 @@ function Timer() {
     switch (focusType) {
       case 2:
         {
-          if (minutes == longChill) {
+          if (minutes == longBreak) {
             setFocusType(0);
             setCycleCounter(0);
             resetTimer();
@@ -60,7 +60,7 @@ function Timer() {
 
       case 1:
         {
-          if (minutes == chillTime) {
+          if (minutes == breakTime) {
             setFocusType(0);
             resetTimer();
           }
@@ -87,8 +87,8 @@ function Timer() {
 
   // Recounting long chill in case chill time changed
   useEffect(() => {
-    setLongChill(chillTime * 3);
-  }, [chillTime]);
+    setLongBreak(breakTime * 3);
+  }, [breakTime]);
 
   // Counting second and listening on reset click
   useEffect(() => {
@@ -155,7 +155,7 @@ function Timer() {
   };
 
   const changeChillTimer = (e: React.FormEvent<HTMLInputElement>) =>
-    setChillTime(validateInput(Number.parseInt(e.currentTarget.value)));
+    setBreakTime(validateInput(Number.parseInt(e.currentTarget.value)));
 
   let audio = new Audio('alert.wav');
 
@@ -214,7 +214,7 @@ function Timer() {
           type="number"
           onChange={changeChillTimer}
           txt={'Chill timer'}
-          value={chillTime}
+          value={breakTime}
         />
       </div>
     </div>

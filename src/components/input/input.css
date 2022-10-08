@@ -6,8 +6,9 @@
 }
 
 input {
-  padding: 4px;
+  font-size: 1.2rem;
+  padding: 8px;
   border-radius: 8px;
 
-  border: 1px solid #8d99ae;
+  border: 2px solid var(--sub-color);
 }

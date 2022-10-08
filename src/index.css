@@ -16,13 +16,18 @@ button {
 
 /* STYLE */
 
-body {
-  height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  background-color: #2b2d42;
-  color: #edf2f4;
-}
-
 #root {
   height: 100%;
+}
+
+body {
+  --bg-color: #f47c7c;
+  --font-color: #111;
+  --main-color: #ef9f9f;
+  --sub-color: #e26868;
+
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }

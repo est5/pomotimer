@@ -141,7 +141,7 @@ function Timer() {
   const getFocus = () => {
     switch (focusType) {
       case 0:
-        return 'Work';
+        return 'Focus';
       case 1:
         return 'Break';
       case 2:
@@ -169,9 +169,9 @@ function Timer() {
 
   return (
     <div className="timer-container">
-      <h1>Its {getFocus()} time !</h1>
+      <h1>Time to {getFocus()} !</h1>
       <p>
-        Work cycles in this round done: <strong>{cycleCounter}</strong>
+        Focus cycles in this round done: <strong>{cycleCounter}</strong>
       </p>
       <p>
         Rounds done: <strong>{round}</strong>
@@ -195,7 +195,7 @@ function Timer() {
             }
             setFocusType(focusType == 0 ? 1 : 0);
           }}
-          txt={`Skip to ${focusType == 0 ? 'Break' : 'Work'}`}
+          txt={`Skip to ${focusType == 0 ? 'Break' : 'Focus'}`}
         />
       </div>
 

@@ -5,15 +5,13 @@
   gap: 24px;
   font-size: 1.3rem;
 
-  background-color: #ef233c;
+  background-color: var(--main-color);
   padding: 48px;
   border-radius: 8px;
-  box-shadow: 8px 8px 2px #d90429;
 }
 
 .buttons {
   display: flex;
-  /* flex-direction: column; */
   gap: 16px;
 
   align-items: center;
@@ -21,8 +19,22 @@
 
 h1 {
   font-size: 3rem;
+  font-weight: 700;
 }
 
 .timer {
-  font-size: 4rem;
+  font-size: 5rem;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .timer-container {
+    gap: 8px;
+  }
 }

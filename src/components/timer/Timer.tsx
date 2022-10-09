@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import './timer.css';
-import { setTimeout } from 'worker-timers';
+import { clearInterval, setInterval, setTimeout } from 'worker-timers';
 
 enum Focus {
   WORK,
@@ -162,9 +162,7 @@ function Timer() {
   //On focus change play audio
   useEffect(() => {
     audio.volume = 0.3;
-    for (let i = 0; i < 3; i++) {
-      audio.play();
-    }
+    audio.play();
   }, [focusType]);
 
   return (

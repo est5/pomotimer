@@ -1,16 +1,17 @@
 button {
   border-radius: 8px;
   border: 2px solid var(--sub-color);
+  background-color: var(--sub-color);
   font-size: 1.1rem;
+  font-weight: 500;
   color: var(--font-color);
 
   min-width: 10rem;
   padding: 4px 8px;
 
-  transition: all 0.15s ease;
+  transition: all 0.15s ease-in-out;
 }
 
 button:hover {
   transform: scale(1.1);
-  font-weight: 500;
 }

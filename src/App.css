@@ -4,3 +4,9 @@
   align-items: center;
   height: 75%;
 }
+
+@media (max-width: 500px) {
+  .container {
+    height: 90%;
+  }
+}

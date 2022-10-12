@@ -21,10 +21,10 @@ button {
 }
 
 body {
-  --bg-color: #f47c7c;
-  --font-color: #111;
-  --main-color: #ef9f9f;
-  --sub-color: #e26868;
+  --bg-color: #092327;
+  --font-color: #fff;
+  --main-color: #0b5351;
+  --sub-color: #092327;
 
   height: 100vh;
   font-family: 'Poppins', sans-serif;

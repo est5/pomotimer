@@ -12,3 +12,10 @@ input {
 
   border: 2px solid var(--sub-color);
 }
+
+@media (max-width: 500px) {
+  .input-container {
+    margin-top: 8px;
+    flex-direction: column;
+  }
+}
